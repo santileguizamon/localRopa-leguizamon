@@ -5,7 +5,7 @@
     height: '4 rem';
     background-Color: black;
     justify-content: space-between;
-    aling-items:center;
+    align-items:center;
 }
 ul{
     list-style-type: none;
@@ -17,4 +17,10 @@ li{
 }
 button{
     
+}
+
+h1{
+    display: flex;
+    text-size-adjust: large;
+    color: rgb(250, 9, 9);
 }
