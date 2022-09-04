@@ -1,9 +1,12 @@
 import {useState} from 'react';
 
-const itemCount = ({stock,initial,onAdd}) =>{
+const ItemCount = ({stock,initial,onAdd}) =>{
     const [contador,setContador] = useState (0);
     const suma = () => {
-        setContador( contador + 1 <stock)
+        setContador( stock < contador + 1 )
+    };
+    const resta = () => {
+        setContador( stock > contador - 1 )
     };
     return(
         <>
@@ -14,4 +17,4 @@ const itemCount = ({stock,initial,onAdd}) =>{
     );
 };
 
-export default itemCount;
+export default ItemCount;

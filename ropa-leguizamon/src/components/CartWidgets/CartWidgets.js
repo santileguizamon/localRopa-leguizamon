@@ -1,10 +1,10 @@
 import cart from '../../cart.ico';
 
 
-    const cartWidgets = () =>{
+    const CartWidgets = () =>{
         return(
         <img width={'3rem'} src={cart} alt= 'logo'/>
         );
     }    
 
-export default cartWidgets;
+export default CartWidgets;
