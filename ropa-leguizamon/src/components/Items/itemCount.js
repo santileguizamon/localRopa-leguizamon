@@ -1,17 +1,26 @@
 import {useState} from 'react';
 
 const ItemCount = ({stock,initial,onAdd}) =>{
-    const [contador,setContador] = useState (0);
+    const [contador,setContador] = useState (initial);
     const suma = () => {
-        setContador( stock < contador + 1 )
+       if ( contador < stock + 1 )
+       {setContador (contador+ 1)}
     };
     const resta = () => {
-        setContador( stock > contador - 1 )
+        if( contador > initial - 1 )
+        {setContador(contador-1)}
     };
+    const confirmar = ()=>{
+        if (contador > 0)
+           { onAdd(contador)}
+        else {console.log('No hay mas stock')}
+    }
     return(
         <>
         <div>
-            <button onClick={initial}> Agregar al carrito </button>
+            <button onClick={suma}> + </button>
+            <button onClick={resta}> -</button>
+            <button onClick={()=>{confirmar(contador)}}> confirmar carrito </button>
         </div>
         </>
     );

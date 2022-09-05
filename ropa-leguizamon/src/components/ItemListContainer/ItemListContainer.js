@@ -7,6 +7,11 @@ import { useState,useEffect } from "react";
 
 
 const ItemListContainer = ({greeting}) => {
+
+    const onAdd = (cantidad) =>{
+        console.log(`agregaste ${cantidad} productos al carrito`)
+    }
+
     const[items,setItems]= useState([]);
 
     const getData = new Promise((resolve,reject)=>{
