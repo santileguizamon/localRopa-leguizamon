@@ -1,20 +1,18 @@
 import { useState,useEffect } from "react"
-import data from "../ItemListContainer/data";
-
+import ItemDetail from "../ItemDetail/ItemDetail";
+import { getItem } from "../ItemListContainer/data";
 
 const ItemDetailContainer = () => {
     const [item,setItem] = useState ([]);
 
-const getItem = new Promise((resolve, reject) => {
-    setTimeout (()=>{resolve(data)})
-})
+
 useEffect(()=>{
-    getData.then((result)=>{setItem(item,description,price,stock)
+    getItem().then((result)=>{console.log(result)
     })
 },[]);
     
   return (
-    <ItemList itemList={item}/>
+    <ItemDetail {...item}/>
   )
 
 }

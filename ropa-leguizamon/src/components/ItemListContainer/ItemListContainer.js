@@ -1,34 +1,30 @@
 import cartWidgets from "../CartWidgets/CartWidgets"
-import style from "../NavBar/style.css"
-import itemCount from "../Items/ItemCount";
-import data from "./data";
+import  "../NavBar/style.css"
 import ItemList from "../ItemList/ItemList";
-import { useState,useEffect } from "react";
+import { useState,useEffect,} from "react";
+import { getItems } from "./data";
+import ItemDetail from "../ItemDetail/ItemDetail";
+
 
 
 const ItemListContainer = ({greeting}) => {
-
-    const onAdd = (cantidad) =>{
-        console.log(`agregaste ${cantidad} productos al carrito`)
-    }
-
     const[items,setItems]= useState([]);
 
-    const getData = new Promise((resolve,reject)=>{
-         setTimeout(()=>{resolve(data)},2000)
-    })
-
     useEffect(()=>{
-        getData.then((result)=>{setItems(result)
+        getItems.then((productos)=>{setItems(productos)
         })
     },[]);
 
-   return <><h1>{greeting}</h1>
+   return(
+   <>
+   <h1>{greeting}</h1>
     {
-        items.length > 0?(<ItemList itemList={items}/>):(<div>Cargando.....</div>)
+        items.length > 0?(<ItemList items={items}/>):(<div>Cargando.....</div>)
         
     }
-    <itemCount stock={10} initial={1} onAdd={onAdd} /></>
+    
+    </>
+    )
 };
 
 export default ItemListContainer;

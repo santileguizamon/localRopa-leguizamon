@@ -1,3 +1,7 @@
+import { useState } from "react";
+
+
+
 const data =[
     {
         id: 1,
@@ -36,4 +40,13 @@ const data =[
     }
 ];
 
-export default data
+export const getItems = new Promise((resolve, reject) => {
+    setTimeout (()=>{resolve(data)},2000)
+}) 
+export const getItem = (id) => {
+    return new Promise ((resolve, reject) => {
+            const buscador = data.find (el=>el.id==id)
+            setTimeout(()=>{resolve(buscador)},2000)
+        })
+    
+}

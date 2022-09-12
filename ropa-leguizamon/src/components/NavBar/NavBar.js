@@ -12,6 +12,7 @@ const NavBar = () => {
                     <li><a href='#'>Sobre nosotros</a></li>
                 </ul>
             </div>
+            <CartWidgets/>
             <div>
                 <button> Login </button>
             </div>
