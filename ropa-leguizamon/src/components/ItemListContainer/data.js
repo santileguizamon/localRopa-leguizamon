@@ -2,7 +2,7 @@ import { useState } from "react";
 
 
 
-const data =[
+export const data =[
     {
         id: 1,
         item: 'remera',
