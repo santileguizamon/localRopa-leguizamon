@@ -5,6 +5,8 @@ import { useState,useEffect,} from "react";
 import { getItems } from "./data";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import {useParams} from "react-router-dom"
+import {db} from "../../../utils/firebase";
+import {doc,getDoc,query,collection,getDocs,where} from "firebase/firestore";
 
 
 
@@ -14,14 +16,15 @@ const ItemListContainer = ({greeting}) => {
     const[items,setItems]= useState([]);
 
     useEffect(()=>{
-        getItems.then((productos)=>{
-            if (categoryId){const newProd = productos.filter(prod=>prod.item === categoryId)
-            setItems(newProd)}
-            else{
-                setItems(productos)
-            } 
-        })
-    },[categoryId]);
+        const getData = async()=>{
+            const query = collection(db,"items");
+            const response = await getDocs(query);
+            const productos = response.docs.map(doc=>{
+                const newProd = {...doc.data(),id:doc.id}
+            })
+            return newProd
+        } 
+    });
 
    return(
    <>
@@ -33,6 +36,7 @@ const ItemListContainer = ({greeting}) => {
     
     </>
     )
+    getData()
 };
 
 export default ItemListContainer;

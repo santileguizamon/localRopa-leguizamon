@@ -45,8 +45,14 @@ export const getItems = new Promise((resolve, reject) => {
 }) 
 export const getItem = (id) => {
     return new Promise ((resolve, reject) => {
-            const buscador = data.find (el=>el.id==id)
-            setTimeout(()=>{resolve(buscador)},2000)
+            const buscador = data.find (el=>el.id==parseInt(id))
         })
     
+}
+
+export const category = (item) => {
+    return new Promise((resolve, reject) => {
+        const categoria = item.filter (item)
+    })
+
 }

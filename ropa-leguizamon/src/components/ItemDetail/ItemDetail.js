@@ -8,6 +8,7 @@ const ItemDetail = ({id,item,description,price,stock}) => {
   const [contador,setContador]=useState(0);
 
   const onAdd = (cantidad) =>{
+    const [cantidad,setCantidad]=useState(setContador)
     console.log(`agregaste ${cantidad} productos al carrito`);
     setContador(cantidad)
     addProd(item,cantidad)
