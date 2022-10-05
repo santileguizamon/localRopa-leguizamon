@@ -1,8 +1,9 @@
-import React,{useContext, useState} from 'React'
+import React,{useContext, useState, createContext} from 'React'
 import { CartContext } from '../../context/CartContext'
 import ItemCount from '../ItemCount/ItemCount';
 import {db} from "../../../utils/firebase";
 import {collection,addDoc} from "firebase/firestore";
+import { CartProvider } from '../../context/CartContext';
 
 export const CartContainer = () => {
     const {productCartList,removeItem,getTotalPrice,clear} = useContext(CartContext);
@@ -32,6 +33,7 @@ export const CartContainer = () => {
                 {noHay? <h2>No hay productos seleccionados</h2> : productCartList}
                 <button onClick={()=>setProds(ItemDetailContainer)}>Segui comprando!</button>
                 <p>Precio Total:{getTotalPrice()}</p>
+                <button onClick={emptyCart}>Vaciar carrito</button>
                 <form onSubmit={sendOrden}>
                     <label>Nombre:</label>
                     <imput type="text"/>

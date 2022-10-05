@@ -8,13 +8,16 @@ export const CartProvider = ({children}) =>{
   
 
   const addProd = (item,quantity)=>{
-    const newProd = {
-      ...item,
-      quantity
-    }
-    const newArray = [...productCartList];
-    newArray.push(newProd);
-    setProductCartList(newArray);
+    if(isInCart(newProd.id)){
+     carrito.map(el=>{
+      if(el.id===newProd.id){
+        el.quantity += newProd.quantity
+      }
+      return(el)
+     })} 
+    else{
+      setCart([...cart,newProd])
+     }
   }
 
   const removeItem=(itemId)=>{
@@ -23,8 +26,13 @@ export const CartProvider = ({children}) =>{
   }
 
   const isInCart =(itemId)=>{
-    if (addProd = true){const sameProd = productos.filter(prod=>prod.itemId === newArray)}
-    else {setProductCartList(newArray)}
+    return carrito.some(el=>el.id===id)
+  }
+
+  const emptyCart = []
+
+  const getQuantity = (isInCart)=>{
+    const quantity = newArray.push(getQuantity[productCartList[isInCart]])
   }
 
   return(
@@ -45,12 +53,10 @@ const getTotalProducts = () => {
 const guardarOrden =
   {buyer: {name:event.target[0].value, telefono:event.target[2].value, email:event.target[1].value},
   items: [...id,nombre,precio],
-  const getTotalProducts : async()=>{
+     getTotalProducts : async()=>{
     const query = collection(db,"items");
     const response = await getDoc(query);
     const guardarOrden = response.doc.map(doc=>{
         const newOrdem = {...doc.collection(),id:doc.id}
     })
-}
-
-
+}}
