@@ -6,16 +6,14 @@ import {collection,addDoc} from "firebase/firestore";
 import { CartProvider } from '../../context/CartContext';
 
 export const CartContainer = () => {
-    const {productCartList,removeItem,getTotalPrice,clear} = useContext(CartContext);
-    const {prods, setProds} = useState(ItemDetailContainer);
-    const noItems = () => {
-    const [noHay, setNoHay] = useState(true);
-    const [idOrder,setIdOrder] = useState("")
+    const [noHay, setNoHay] = useState(false);
+    const [idOrder,setIdOrder] = useState("");
    
     const sendOrden = (event)=>{
         event.preventDefault();
-        const orden = {buyer: {name:event.target[0].value, telefono:event.target[2].value, email:event.target[1].value},
-         items:productCartList, 
+        const orden = {buyer: {name:event.target[0].value, telefono:event.target[2].value, email:event.target[1].value}}
+        const items ={ 
+         items:carrito, 
          total: getTotalPrice()};
         const queryRef = collection(db,"ordenes");
         addDoc(queryRef,orden).then(response=>{console.log("response",response)
@@ -30,7 +28,7 @@ export const CartContainer = () => {
                 <>
                 <p>{item.item} - {item.quantity}</p>
                 <button onClick={()=>removeItem(item.id)}>eliminar</button> 
-                {noHay? <h2>No hay productos seleccionados</h2> : productCartList}
+                {noHay(true)? <h2>No hay productos seleccionados</h2> : productCartList}
                 <button onClick={()=>setProds(ItemDetailContainer)}>Segui comprando!</button>
                 <p>Precio Total:{getTotalPrice()}</p>
                 <button onClick={emptyCart}>Vaciar carrito</button>
@@ -43,13 +41,32 @@ export const CartContainer = () => {
                     <imput type="text"/>
                     <button type= 'submit'>Enviar orden</button>
                 </form>
-                {idOrder &&<p>Su numero de orden es:{idOrder}</p>}
+                {idOrder ?<p>Su numero de orden es:{idOrder}</p>: sendOrden}
                 </>
             ))}
         </div>
     </div>
   )
-}}
+}
 
-
-export default CartContainer
+const getTotalPrice = () => {
+    const totalPrice = productCartList.reduce((acc,item)=>acc + item.quantity,0);
+    return totalPrice
+  }
+  const getTotalProducts = () => {
+    const totalProducts = productCartList.reduce((acc,item)=>acc + item.quantity,0);
+    return totalProducts
+  }
+  
+  const guardarOrden = (event)=>{
+    event.preventDefault();
+    const orden = {buyer: {name:event.target[0].value, telefono:event.target[2].value, email:event.target[1].value},
+    items: [...id,nombre,precio],
+       getTotalProducts : async()=>{
+      const query = collection(db,"items");
+      const response = await getDoc(query);
+      const guardarOrden = response.doc.map(doc=>{
+          const newOrdem = {...doc.collection(),id:doc.id}
+      })
+  }}
+}

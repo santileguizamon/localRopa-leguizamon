@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react"
 import ItemDetail from "../ItemDetail/ItemDetail";
-import { data } from "../ItemListContainer/data"
 import { getItem } from "../ItemListContainer/data";
 import { useParams } from "react-router-dom"
 import { getItem } from "../ItemListContainer/data";
 import { collection } from "firebase/firestore";
-import { db } from "../../../utils/firebase";
+import { db } from "../../utils/firebase";
 
-const ItemDetailContainer = () => {
+export const ItemDetailContainer = () => {
   const { prodId } = useParams();
 
   const [item, setItem] = useState([]);
@@ -19,27 +18,23 @@ const ItemDetailContainer = () => {
 
   }
   useEffect(() => {
-    const queryRef = query(collection(db, "items"), where("nombre", "==", []))
-    const response = await getDocs(queryRef);
-    const productos = response.docs.map(doc => {
-      const newProd = { ...doc.data(), id: doc.id }
-    });
+    const detalle = async()=>{
+      const queryRef = query(collection(db, "items"), where("nombre", "==", []))
+      const response = await getDocs(queryRef);
+      const productos = response.docs.map(doc => {
+        const newProd = { ...doc.data(), id: doc.id }
         return newProd
-   ,
-    
+      })
+    }
+  });
     getProducto()
-  
+      getData()
     [prodId]
 
-  return (
-    <ItemDetail {...item} />
-  )
-  )}
-
-getData();
-
+    return (
+      <ItemDetail {...item} />
+    )
+}
+      
 
 
-
-
-export default ItemDetailContainer
