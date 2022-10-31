@@ -1,6 +1,6 @@
 import React,{useContext, useState, createContext} from 'React'
 import { CartContext } from '../../context/CartContext'
-import ItemCount from '../ItemCount/ItemCount';
+import {ItemCount} from '../ItemCount/ItemCount';
 import {db} from "../../../utils/firebase";
 import {collection,addDoc} from "firebase/firestore";
 import { CartProvider } from '../../context/CartContext';

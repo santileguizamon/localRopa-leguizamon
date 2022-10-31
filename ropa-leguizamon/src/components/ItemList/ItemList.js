@@ -1,6 +1,6 @@
 import Item from "../Item/Item";
 
-const ItemList = ({ items }) => {
+export const ItemList = ({ items }) => {
 
     return (
         <>
@@ -16,4 +16,3 @@ const ItemList = ({ items }) => {
     )
 }
 
-export default ItemList

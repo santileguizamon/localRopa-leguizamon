@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
 
-const Item = ({id,item,description,price,stock}) => {
+export const Item = ({id,item,description,price,stock}) => {
   return (
     <div>
         <h2>{item}</h2>
@@ -12,5 +12,5 @@ const Item = ({id,item,description,price,stock}) => {
   )
 }
 
-export default Item
+
 

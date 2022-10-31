@@ -3,7 +3,7 @@ import {getQuantity,getTotalProducts} from "../../context/CartContext"
 import {ItemDetail} from "../ItemDetail"
 
 
-    const CartWidgets = () =>{
+   export const CartWidgets = () =>{
         return(
        <CartWidgets>
             <img width={'3rem'} src={cart} alt= 'logo'  />{getTotalProducts > 0 ? quantity:0}
@@ -11,4 +11,3 @@ import {ItemDetail} from "../ItemDetail"
     )}    
  
         
-export default CartWidgets;

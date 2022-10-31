@@ -1,16 +1,16 @@
 import cartWidgets from "../CartWidgets/CartWidgets"
 import  "../NavBar/style.css"
-import ItemList from "../ItemList/ItemList";
+import {ItemList} from "../ItemList/ItemList";
 import { useState,useEffect,} from "react";
 import { getItems } from "./data";
-import ItemDetail from "../ItemDetail/ItemDetail";
+import {ItemDetail} from "../ItemDetail/ItemDetail";
 import {useParams} from "react-router-dom"
 import {db} from "../../utils/firebase";
 import {doc,getDoc,query,collection,getDocs,where} from "firebase/firestore";
 
 
 
-const ItemListContainer = ({greeting}) => {
+export const ItemListContainer = ({greeting}) => {
     const {categoryId} = useParams()
      
     const[items,setItems]= useState([]);
@@ -40,4 +40,3 @@ const ItemListContainer = ({greeting}) => {
     this.state.getData()
 };
 
-export default ItemListContainer;
